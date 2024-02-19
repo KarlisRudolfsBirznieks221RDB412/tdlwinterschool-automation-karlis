@@ -1,10 +1,12 @@
 export const config = {
+
+
     //
     // ====================
     // Runner Configuration
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
-    runner: 'local',
+    //runner: 'local',
     //
     // ==================
     // Specify Test Files
@@ -123,7 +125,13 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
+    reporters: ['spec',
+    
+    ['allure',
+     {
+        outputDir: 'allure-results',
+        //useCucumberStepReporter: true
+    }]],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
@@ -249,7 +257,12 @@ export const config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
+     afterStep: async function (step, scenario, result, context) {
+        if (result.error) {
+            await browser.takeScreenshot();
+        }
+    },
+    
     // },
     /**
      *

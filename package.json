@@ -9,6 +9,7 @@
     "@wdio/spec-reporter": "^8.31.1"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "wdio run ./wdio.conf.js",
+    "allure": "allure serve allure-results"
   }
 }
